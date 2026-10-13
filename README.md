@@ -140,3 +140,37 @@ Browser загварт 144 боломжит хослол байснаас PICT 2
 PICT-ийн сул тал нь алдааны зөв хариу болон бизнесийн дүрмийг өөрөө тодорхойлдоггүй тул Category-Partition-ийн шинжилгээ шаардлагатай байдаг.
 
 Миний хувьд хамгийн их бодож ажилласан хэсэг нь хязгаарлалтуудыг зөв тодорхойлж, олон алдаа давхцах үед аль алдааг түрүүлж шалгахыг шийдэх явдал байв.
+
+## Үр дүнг дахин гаргах заавар
+
+Энэ лабораторийн PICT загваруудыг MSYS2 UCRT64 орчинд ажиллуулсан. PICT хэрэгслийг эх кодоос хөрвүүлсэн бөгөөд ашигласан commit болон usage мэдээллийг `results/pict-build.txt` файлд хадгалсан.
+
+Репозиторыг татаж авсны дараа PICT хэрэгслийг суулгасан орчинд төслийн үндсэн хавтсаас дараах командуудыг ажиллуулна.
+
+```bash
+pict browser.model > results/browser-2way.txt
+pict browser.model /o:3 > results/browser-3way.txt
+pict transfer-nc.model > results/transfer-nc.txt
+pict transfer.model > results/transfer.txt
+pict transfer-neg.model > results/transfer-neg.txt
+```
+
+MSYS2 UCRT64 орчинд `/o:3` сонголтыг ашиглахдаа замын автомат хөрвүүлэлтийг идэвхгүй болгоно.
+
+```bash
+MSYS_NO_PATHCONV=1 pict browser.model /o:3 > results/browser-3way.txt
+```
+
+`pict` команд PATH-д байхгүй бол өөрийн суулгасан PICT executable-ийн замыг ашиглана. Энэ лабораторид `~/tools/pict/pict` замыг хэрэглэсэн.
+
+Гаралтын эхний мөр нь параметрийн нэрсийг агуулдаг тул тестийн тоог шалгахдаа нэг мөрийг хасна.
+
+| Үр дүнгийн файл | Хүлээгдэх тестийн тоо |
+|---|---:|
+| `results/browser-2way.txt` | 10 |
+| `results/browser-3way.txt` | 20 |
+| `results/transfer-nc.txt` | 15 |
+| `results/transfer.txt` | 13 |
+| `results/transfer-neg.txt` | 18 |
+
+PICT нь ижил хамрах хүрээг хангах өөр мөрүүд үүсгэж болох тул үр дүнгийн мөр бүрийг үгчлэн харьцуулахын оронд тестийн тоо болон хамрах хүрээг шалгана.
